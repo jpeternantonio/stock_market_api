@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Buy{% endblock %}
+{% block content %}
+<div class="card container mt-5">
+    <div class="card-header">
+        <h5 class="card-title">Buy {{stock.name}}</h5>
+        
+    </div>
+    <div class="card-body">
+        <form action="{% url 'buy_done' %}" method="POST">
+            {% csrf_token %}
+            <label for="">Stock</label>
+            <input type="text" name="s_name" id="" value="{{ stock.name}}" readonly>
+            <input type="hidden" name="user_id" value="{{ user.id }}">
+            <input type="hidden" name="stock_id" value="{{stock.id}}">
+            <label for="">Price</label>
+            <input type="number" name="s_price" id="" value="{{ stock.price }}" readonly>
+            <label for="">Share</label>
+            <input type="number" name="share" id="">
+           
+            <input type="submit" name="" id="" class="btn btn-success">
+            <!-- <button type="submit" class="btn btn-success">Buy</button> -->
+            
+        </form>
+    </div>
+</div>
+{% endblock %}

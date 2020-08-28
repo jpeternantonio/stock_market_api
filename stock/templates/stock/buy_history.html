@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Purchased History{% endblock %}
+{% block content %}
+ 
+<div class="container">
+    <h1 class="text-center">Purchased History</h1>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Share</th>
+                <th scope="col">Purchased Price</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Total Invest</th>
+                <th scope="col">Latest Price</th>
+                
+                <th scope="col">Return of Investment</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in purchased %}
+            <tr>
+                <td id='share'>{{ p.share }}</td>
+                <td id="price">{{ p.price}}</td>
+                <td>{{ p.stock.name}}</td>
+                <td id="invest">{% widthratio p.price 1 p.share %}</td>
+                <td id="current_price">{{ p.stock.price}}</td>
+                <td id="roi">{% widthratio p.price 1 p.share %}</td>
+                 <!--To compute, roi = (share * current_price) - invest -->
+                <td><a href="{% url 'sell' p.id%}" class="btn btn-primary">Sell</a> </td>
+           
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+</div>
+
+
+  
+{% endblock %}

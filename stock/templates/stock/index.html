@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Log-in{% endblock %}
+{% block content %}
+
+<div class="container">
+    <h1 class="text-center">Stock Market</h1>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td>{{ stock.name }}</td>
+                <td>{{ stock.price }}</td>
+                {% if request.user.is_authenticated %}
+                <td><a href="{% url 'buy_stock' stock.id%}" class="btn btn-primary">Buy</a></td>
+                {% else %}
+                <td><a href="{% url 'login' %}" class="btn btn-primary">Log-in or Register to Buy</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

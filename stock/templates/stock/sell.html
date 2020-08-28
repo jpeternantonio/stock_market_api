@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Sell{% endblock %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Selling</h5>
+        
+    </div>
+    <div class="card-body">
+        <form action="{% url 'sell_done' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="s_name" id="" value="{{ stock.name}}">
+            <input type="hidden" name="user_id" value="{{ user.id }}">
+            <input type="hidden" name="purchased_id" value="{% for p in purchased %}{{ p.id }}{% endfor %}">
+            <input type="number" name="s_price" id="" value="{{ stock.price }}">
+            <input type="number" name="share" id="" value="{% for p in purchased %}{{ p.share }}{% endfor %}">
+            <button type="submit" class="btn btn-success">Sell</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
