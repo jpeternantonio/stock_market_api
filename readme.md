@@ -1,5 +1,8 @@
 Django Web App Stocks
 
+OS:
+    Ubuntu 18.04 running in WSL2
+
 Program used:
     python 3.8
     django 3.1
