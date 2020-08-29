@@ -1,5 +1,6 @@
 from django.views.generic import ListView, UpdateView
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Sum, F, ExpressionWrapper, DecimalField
 from .models import Stocks, Purchased
 from .forms import PurchasedForm
 from account.models import User
@@ -72,9 +73,12 @@ def buy_done(request):
 @login_required(login_url="account/login")
 def buy_history(request):
     user = request.user
-    purchased = Purchased.objects.all().select_related('user').select_related('stock').filter(user_id=user.id).order_by('-id')
-    
-
+    #purchased = Purchased.objects.all().select_related('user').select_related('stock').filter(user_id=user.id).order_by('-id')
+    #purchased = Purchased.objects.values_list('user__balance', 'stock__name', 'share', 'price').annotate(invest=Sum(field='price * share')).filter(user_id=3)
+    purchased = (Purchased.objects
+                .annotate(invested=ExpressionWrapper(F('share') * F('price'), output_field=DecimalField()))
+                .annotate(current_price=ExpressionWrapper(F('share') * F('stock__price'), output_field=DecimalField()))
+                .filter(user_id=user.id)).order_by('-id')
     context = {'purchased':purchased}
     return render(request,'stock/buy_history.html', context)
 

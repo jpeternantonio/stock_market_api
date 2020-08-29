@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load stock_tags %}
 {% block title %}Purchased History{% endblock %}
 {% block content %}
  
@@ -14,20 +15,20 @@
                 <th scope="col">Latest Price</th>
                 
                 <th scope="col">Return of Investment</th>
-                <th scope="col">Action</th>
+                <th scope="col">Sell</th>
             </tr>
         </thead>
         <tbody>
             {% for p in purchased %}
             <tr>
                 <td id='share'>{{ p.share }}</td>
-                <td id="price">{{ p.price}}</td>
+                <td id="price">${{ p.price}}</td>
                 <td>{{ p.stock.name}}</td>
-                <td id="invest">{% widthratio p.price 1 p.share %}</td>
-                <td id="current_price">{{ p.stock.price}}</td>
-                <td id="roi">{% widthratio p.price 1 p.share %}</td>
+                <td id="invest">${{p.invested}}</td>
+                <td id="current_price">${{p.current_price}}</td>
+                <td id="roi">${{p.current_price|subtract:p.invested}}</td>
                  <!--To compute, roi = (share * current_price) - invest -->
-                <td><a href="{% url 'sell' p.id%}" class="btn btn-primary">Sell</a> </td>
+               <td><a href="{% url 'sell' p.id %}" class="btn btn-danger">Sell</a></td>
            
 
             </tr>

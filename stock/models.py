@@ -12,8 +12,6 @@ class Stocks(models.Model):
 
         verbose_name_plural = 'Stocks'
 
-    # def get_absolute_url(self):
-    #     return reverse('stock:buy')
 
 class Purchased(models.Model):
     user = models.ForeignKey(
@@ -24,3 +22,7 @@ class Purchased(models.Model):
     )
     share = models.IntegerField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
+
+    class Meta:
+
+        verbose_name_plural = 'Purchased'

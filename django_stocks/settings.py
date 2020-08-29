@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'django_stocks.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
+        'NAME': os.environ.get('db'),
+        'USER': os.environ.get('db_user'),
+        'PASSWORD': os.environ.get('db_pass'),
+        'HOST': 'localhost',
     }
 }
 
