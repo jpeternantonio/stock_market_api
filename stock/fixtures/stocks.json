@@ -1,0 +1,42 @@
+[
+{
+  "model": "stock.stocks",
+  "pk": 1,
+  "fields": {
+    "name": "google",
+    "price": "146.78"
+  }
+},
+{
+  "model": "stock.stocks",
+  "pk": 2,
+  "fields": {
+    "name": "apple",
+    "price": "204.12"
+  }
+},
+{
+  "model": "stock.stocks",
+  "pk": 3,
+  "fields": {
+    "name": "microsoft",
+    "price": "108.11"
+  }
+},
+{
+  "model": "stock.stocks",
+  "pk": 4,
+  "fields": {
+    "name": "netflix",
+    "price": "108.70"
+  }
+},
+{
+  "model": "stock.stocks",
+  "pk": 5,
+  "fields": {
+    "name": "tesla",
+    "price": "205.15"
+  }
+}
+]

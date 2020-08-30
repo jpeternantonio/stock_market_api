@@ -16,12 +16,15 @@ environment = pipenv
 
 Program Description:
     -This program will enable user to buy and sell stocks. Check history purchased
-and return of his investment. REST api can use also to buy and sell stocks without opening
+and show the return of his investment. REST api can use also to buy and sell stocks without opening
 a webpage, as long as the server is running.
 
 How to use this program.
+
+ 
 1. Install all needed program on your computer
 2. Run it in localhost and do the usual migration in django
+    a. Run 'python manage.py loaddata stocks.json' after migration. This will populate the data for stock models.
 3. Register as superuser to add stock. Name and price
 4. Register again using web app and add your ideal balance to buy stocks.
 5. Once registered, log-in and buy the stock and how many share you choose. Your balance will be deduct

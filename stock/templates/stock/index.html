@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container">
-    <h1 class="text-center">Stock Market</h1>
+    <h1 class="text-center mt-5">Stock Market</h1>
     
     <table class="table">
         <thead class="thead-light">
@@ -17,7 +17,7 @@
             {% if stocks is not None %}
                 {% for stock in stocks %}
                 <tr>
-                    <td class="stock_name">{{ stock.name }}</td>
+                    <td class="stock_name text-capitalize">{{ stock.name }}</td>
                     <td>${{ stock.price }}</td>
                     {% if request.user.is_authenticated %}
                     <td><a href="{% url 'buy_stock' stock.id%}" class="btn btn-primary">Buy</a></td>
