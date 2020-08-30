@@ -5,7 +5,6 @@ from .forms import LoginForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 
 
-
 def register(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
@@ -25,6 +24,7 @@ def register(request):
     return render(request,
                   'account/register.html',
                   {'user_form': user_form})
+
 
 def user_login(request):
     if request.method == 'POST':

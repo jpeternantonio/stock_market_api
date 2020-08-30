@@ -3,7 +3,6 @@ from django.views.generic import ListView, UpdateView
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Sum, F, ExpressionWrapper, DecimalField
 from .models import Stocks, Purchased
-from .forms import PurchasedForm, BuyForm
 from account.models import User
 from decimal import Decimal
 from django.contrib.auth.decorators import login_required
@@ -41,8 +40,6 @@ class StockListView(ListView):
 def buy_stock(request, pk):
     stock = Stocks.objects.get(id=pk)
     user = request.user
-   
-    
     context = {'stock':stock,
                'user':user,
             }

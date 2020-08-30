@@ -1,6 +1,11 @@
 from django import forms
 from .models import Purchased
 
+
+
+# For future use after testing of needed requirements
+
+"""
 GEEKS_CHOICES =( 
     ("1", "One"), 
     ("2", "Two"), 
@@ -8,6 +13,7 @@ GEEKS_CHOICES =(
     ("4", "Four"), 
     ("5", "Five"), 
 ) 
+
 class PurchasedForm(forms.Form):
 
     stock = forms.CharField()
@@ -19,3 +25,5 @@ class BuyForm(forms.ModelForm):
         model = Purchased
 
         fields=['share', 'price']
+
+"""

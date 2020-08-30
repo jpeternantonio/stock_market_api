@@ -1,5 +1,3 @@
-import json
-import unittest     
 from django.test import TestCase, Client
 from django.urls import reverse
 from stock.models import Stocks, Purchased
