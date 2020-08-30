@@ -235,10 +235,15 @@ def welcome() -> bool:
     balance = json_user['balance']
     print(f'Here is your current balance: {balance}')
 
-
+"""
 # This start the program flow
 username = os.environ.get('api_user') # hidden inside os environment
 password = os.environ.get('api_pass')
+"""
+
+print('Make sure you are registered user.')
+username = input('Enter your username: ')
+password = input('Enter your password: ')
 
 if username == '' or password == '':
     print('please fill in your username, and password')

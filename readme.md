@@ -44,8 +44,7 @@ after the purchased.
 
 To use the api.
 1. Open api_request.py, and make sure you are registered user and the server is still running.
-2. Fill-in the username and password inside the file
-3. Run api_request.py. The program will use the input to talk to user. Primarily using only input number.
-4. The program will show your user id. Input your user id.
-5. This will show your current balance and choices if you want to buy or sell stocks.
-6. The program will exit once you have done your transaction.
+2. Run api_request.py. The program will use the input to talk to user. Mostly using only input number.
+3. The program will show your user id. Input your user id.
+4. This will show your current balance and choices if you want to buy or sell stocks.
+5. The program will exit once you have done your transaction.
