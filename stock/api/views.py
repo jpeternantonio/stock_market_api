@@ -1,6 +1,6 @@
 from rest_framework import generics
 from .serializers import StockSerializer, PurchasedSerializer, UserSerializer
-from rest_framework import permissions, parsers
+from rest_framework import permissions, parsers, viewsets
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response

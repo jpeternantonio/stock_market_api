@@ -70,7 +70,7 @@ username = ''
 password = ''
 if username == '' or password == '':
     print('please fill in your username, and password')
-    print('once you filled your username and password, run this program and will show you your user_id')
+    print('once you filled your username and password, run this program and will show you your id')
     exit()
 
 user_id_request = requests.get('http://localhost:8000/api/users/')

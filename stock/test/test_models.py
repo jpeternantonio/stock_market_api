@@ -2,7 +2,7 @@ from django.test import TestCase
 from stock.models import Stocks, Purchased
 from account.models import User
 from decimal import Decimal
-from django.db.models import Sum, F, ExpressionWrapper, DecimalField
+from django.db.models import F
 
 
 class StockTestCase(TestCase):
@@ -31,7 +31,7 @@ class PurchasedTestCase(TestCase):
         purchased.save()
         
 
-    # testing of buy stock transaction
+    # test for purchase transaction
     def test_purchased(self) -> bool:
         purchased = Purchased.objects.get(id=1)
         self.assertEqual(purchased.user.username, 'john')
@@ -54,7 +54,7 @@ class SellTestCase(TestCase):
         purchased.save()
         
 
-    # Testing of selling transaction, assertion were seperated to check field value specifically
+    # Testing of selling transaction, assertion were seperated to validate the field value specifically
     def test_sell(self) -> bool:
         sell = Purchased.objects.get(id=2)
         self.assertEqual(sell.price, Decimal('50'))
