@@ -14,17 +14,23 @@
             </tr>
         </thead>
         <tbody>
-            {% for stock in stocks %}
-            <tr>
-                <td>{{ stock.name }}</td>
-                <td>${{ stock.price }}</td>
-                {% if request.user.is_authenticated %}
-                <td><a href="{% url 'buy_stock' stock.id%}" class="btn btn-primary">Buy</a></td>
-                {% else %}
-                <td><a href="{% url 'login' %}" class="btn btn-primary">Log-in or Register to Buy</a></td>
-                {% endif %}
-            </tr>
-            {% endfor %}
+            {% if stocks is not None %}
+                {% for stock in stocks %}
+                <tr>
+                    <td class="stock_name">{{ stock.name }}</td>
+                    <td>${{ stock.price }}</td>
+                    {% if request.user.is_authenticated %}
+                    <td><a href="{% url 'buy_stock' stock.id%}" class="btn btn-primary">Buy</a></td>
+                    {% else %}
+                    <td><a href="{% url 'login' %}" class="btn btn-primary">Log-in or Register to Buy</a></td>
+                    {% endif %}
+                </tr>
+                {% empty %}
+                <h3 class="check_stock text-center text-danger">No stocks yet. Ask admin.</h3>
+
+                <p class="text-center"><a href="/admin/" class="add_stock btn btn-primary mb-5">Add Stock</a></p>
+                {% endfor %}
+            {% endif %}
         </tbody>
     </table>
 
