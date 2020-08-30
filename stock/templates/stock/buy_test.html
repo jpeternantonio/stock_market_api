@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Buy{% endblock %}
+{% block content %}
+<div class="card container mt-5">
+
+
+
+    <div class="card-header">
+        <h5 class="card-title text-center">Buy</h5>
+
+    </div>
+    <div class="card-body">
+   
+
+        <form method="POST">
+            {{form.as_p}}
+        
+            
+        
+
+            <!-- <button type="submit" class="btn btn-success">Buy</button> -->
+
+        </form>
+    </div>
+</div>
+
+<script>
+    function tot() {
+        let price = document.getElementById('price').value;
+        let share = document.getElementById('share').value;
+        share_total = parseFloat(price) * parseFloat(share)
+        document.getElementById('result').innerHTML = share_total.toFixed(2);
+    }
+</script>
+{% endblock %}

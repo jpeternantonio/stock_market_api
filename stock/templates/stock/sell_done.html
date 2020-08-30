@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Sold Successfully{% endblock %}
 {% block content %}
-  <h1>Selling Done {{ user.username }}!</h1>
-  <h2>Your new account balance is: {{user.balance}}</h2>
+  <h1 class="text-center mt-5">Selling Done {{ user.username }}!</h1>
+  <h2 class="text-center">Your new account balance will be: ${{user.balance|add:total}}</h2>
   
 {% endblock %}

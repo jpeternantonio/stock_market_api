@@ -3,8 +3,12 @@
 {% block content %}
 <div class="card container mt-5">
     <div class="card-header">
-        <h5 class="card-title text-center">Selling {{stock.name}}</h5>
-        
+        <h5 class="card-title text-center">Selling Your {{stock.name}} share</h5>
+        {% if error %}
+        <p style="color:red; text-align:center; text-transform: capitalize">{{ error }}</p>
+        <br>
+
+        {% endif %}
     </div>
     <div class="card-body">
         <form action="{% url 'sell_done' %}" method="POST">
@@ -17,6 +21,7 @@
             <input type="number" name="s_price" id="" value="{{ stock.price }}" readonly>
             <label for="">Share</label>
             <input type="number" name="share" id="" value="{% for p in purchased %}{{ p.share }}{% endfor %}">
+
             <input type="submit" name="" id="" class="btn btn-success">
         </form>
     </div>

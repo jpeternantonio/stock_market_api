@@ -5,12 +5,13 @@ from django.urls import reverse
 
 class Stocks(models.Model):
 
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100) #should be unique
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
     class Meta:
 
         verbose_name_plural = 'Stocks'
+
 
 
 class Purchased(models.Model):
@@ -23,6 +24,7 @@ class Purchased(models.Model):
     share = models.IntegerField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
-    class Meta:
+    # def invest(self):
+    #     return self.share * self.price
 
-        verbose_name_plural = 'Purchased'
+ 
