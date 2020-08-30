@@ -35,7 +35,6 @@ class StockListView(ListView):
         return context
 
 
-
 @login_required(login_url="account/login")
 def buy_stock(request, pk):
     stock = Stocks.objects.get(id=pk)
@@ -43,7 +42,6 @@ def buy_stock(request, pk):
     context = {'stock':stock,
                'user':user,
             }
-    
     return render(request, 'stock/buy.html', context)
 
 
@@ -58,7 +56,6 @@ def buy_done(request):
             share = float(request.POST['share'])
             user_id = request.POST['user_id']
             total = price * share
-
             u_id = User.objects.get(id=user_id)
             s_id = Stocks.objects.get(id=stock_id)
             user_balance = User.objects.get(id=user_id)
@@ -68,8 +65,7 @@ def buy_done(request):
             user_balance.save()
             new_buy = Purchased(user=u_id, stock=s_id, share=share, price=price)
             new_buy.save()
-           
-    
+
             return render(request, 'stock/buy_done.html', {'user':user, 'total':total})
         else:
             return render(request, 'stock/buy.html')
@@ -80,10 +76,12 @@ def buy_done(request):
 @login_required(login_url="account/login")
 def buy_history(request):
     user = request.user
+
     purchased = (Purchased.objects
                 .annotate(invested=ExpressionWrapper(F('share') * F('price'), output_field=DecimalField()))
                 .annotate(current_price=ExpressionWrapper(F('share') * F('stock__price'), output_field=DecimalField()))
                 .filter(user_id=user.id)).filter(share__gte=1).order_by('-id')
+
     context = {'purchased':purchased}
     return render(request,'stock/buy_history.html', context)
 
@@ -99,7 +97,6 @@ def sell(request, pk):
                'user':user,
                'stock':stock,
                'purchased':purchased,
-           
             }
     
     return render(request, 'stock/sell.html', context)
@@ -116,8 +113,6 @@ def sell_done(request):
             share = float(request.POST['share'])
             user_id = request.POST['user_id']
             total = price * share
-            #total = request.POST['total']
-
             u_id = User.objects.get(id=user_id)
             sell = Purchased.objects.get(id=purchased_id)
             if share <= 0:

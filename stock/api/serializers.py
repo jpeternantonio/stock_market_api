@@ -2,10 +2,12 @@ from rest_framework import serializers
 from ..models import Stocks, Purchased
 from account.models import User
 
+
 class StockSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stocks
         fields = ['id', 'name', 'price']
+
 
 class PurchasedSerializer(serializers.ModelSerializer):
     class Meta:

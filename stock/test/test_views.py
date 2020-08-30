@@ -15,7 +15,6 @@ class TestViews(TestCase):
         self.user = User.objects.create_user('john', 'johndoe@gmail.com', 'Test456.')
         self.client.login(username='john', password='Test456.')
 
-
     def test_stock_list_GET(self) -> bool:
         response = self.client.get(self.list_url)
 

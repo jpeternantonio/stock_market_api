@@ -13,7 +13,6 @@
                 <th scope="col">Stock</th>
                 <th scope="col">Total Invest</th>
                 <th scope="col">Latest Price</th>
-                
                 <th scope="col">Return of Investment</th>
                 <th scope="col">Sell</th>
             </tr>
@@ -27,10 +26,7 @@
                 <td id="invest">${{p.invested}}</td>
                 <td id="current_price">${{p.current_price}}</td>
                 <td id="roi">${{p.current_price|subtract:p.invested}}</td>
-                 <!--To compute, roi = (share * current_price) - invest -->
                <td><a href="{% url 'sell' p.id %}" class="btn btn-danger">Sell</a></td>
-           
-
             </tr>
             {% endfor %}
         </tbody>

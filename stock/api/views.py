@@ -34,11 +34,11 @@ class PurchasedDetailView(generics.RetrieveAPIView):
     serializer_class = PurchasedSerializer
 
 
-
 class StocksAddView(APIView): # For superuser only
     authentication_classes = (BasicAuthentication,)
     permission_classes = (IsAuthenticated,)
     parser_classes = (parsers.JSONParser,)
+
 
     def post(self, request, format=None):
         stock_name = request.data['name']
@@ -53,8 +53,8 @@ class PurchasedAddView(APIView):
     permission_classes = (IsAuthenticated,)
     parser_classes = (parsers.JSONParser,)
 
+
     def post(self, request, format=None):
-      
         user_id = request.data['user_id']
         stock_id = request.data['stock_id']
         share = float(request.data['share'])

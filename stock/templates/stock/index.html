@@ -16,6 +16,7 @@
         <tbody>
             {% if stocks is not None %}
                 {% for stock in stocks %}
+
                 <tr>
                     <td class="stock_name text-capitalize">{{ stock.name }}</td>
                     <td>${{ stock.price }}</td>
@@ -25,10 +26,12 @@
                     <td><a href="{% url 'login' %}" class="btn btn-primary">Log-in or Register to Buy</a></td>
                     {% endif %}
                 </tr>
+                
                 {% empty %}
-                <h3 class="check_stock text-center text-danger">No stocks yet. Ask admin.</h3>
 
+                <h3 class="check_stock text-center text-danger">No stocks yet. Ask admin.</h3>
                 <p class="text-center"><a href="/admin/" class="add_stock btn btn-primary mb-5">Add Stock</a></p>
+
                 {% endfor %}
             {% endif %}
         </tbody>

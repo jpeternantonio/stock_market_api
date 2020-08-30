@@ -23,7 +23,7 @@ class Purchased(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
 
-    # Just in case, it needed
+    # Just in case this will be needed
     # def invest(self):
     #     return self.share * self.price
 

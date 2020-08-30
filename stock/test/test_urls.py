@@ -9,7 +9,6 @@ class TestUrls(SimpleTestCase):
         url = reverse('stock-list')
         self.assertEquals(resolve(url).func.view_class, StockListView)
 
-
     def test_list_url_is_resolved(self):
         url = reverse('buy_done')
         self.assertEquals(resolve(url).func, buy_done)

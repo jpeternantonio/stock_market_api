@@ -10,6 +10,4 @@ urlpatterns = [
     path('buy_history', views.buy_history, name='buy_history'),
     path('sell/<int:pk>', views.sell, name='sell'),
     path('sell_done', views.sell_done, name='sell_done'),
-    
-    
 ]

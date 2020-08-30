@@ -3,10 +3,10 @@ from .models import Purchased
 
 
 
-# For future use after testing of needed requirements
+# For future use after finishing needed requirements
 
 """
-GEEKS_CHOICES =( 
+CHOICES =( 
     ("1", "One"), 
     ("2", "Two"), 
     ("3", "Three"), 
@@ -18,7 +18,7 @@ class PurchasedForm(forms.Form):
 
     stock = forms.CharField()
     price = forms.FloatField()
-    share = forms.ChoiceField(choices=GEEKS_CHOICES)
+    share = forms.ChoiceField(choices=CHOICES)
 
 class BuyForm(forms.ModelForm):
     class Meta:

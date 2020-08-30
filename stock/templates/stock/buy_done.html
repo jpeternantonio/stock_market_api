@@ -2,6 +2,7 @@
 {% load stock_tags %}
 {% block title %}Purchased Successfully{% endblock %}
 {% block content %}
+
   <h1 class="text-center mt-5">Purchase Done {{ user.username }}!</h1>
   <h2 class="text-center">Your new account balance will be: ${{user.balance|subtract:total}}</h2>
   
