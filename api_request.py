@@ -15,7 +15,7 @@ def check_server(cid=None) -> bool:
         res = requests.head(uri, headers=h_close)
     except requests.exceptions.RequestException:
         return False
-
+    
     return res.status_code == requests.codes.ok
 
 
@@ -77,6 +77,11 @@ def buy() -> bool: # Purchased a stock
                     }
 
     post_purchased = requests.post(f'{service_uri}buy/', auth=(username, password), json=purchased_data)
+
+    if post_purchased.status_code == 401:
+        print('Invalid user. You input a wrong password.')
+        print('Transaction will be cancelled. Try again.')
+        exit()
 
     print('Thank you for your purchased. It will deduct to your balance.')
     print('Your current balance as of now... ')
@@ -162,10 +167,15 @@ def sell() -> bool:
         'id': option
         }
 
-    post_purchased = requests.put(f'{service_uri}api/sell/', auth=(username, password), json=sell_data)
+    post_purchased = requests.put(f'{service_uri}sell/', auth=(username, password), json=sell_data)
+
+    if post_purchased.status_code == 401:
+        print('Invalid user. You input a wrong password.')
+        print('Transaction will be cancelled. Try again.')
+        exit()
 
     print('Thank you for your purchased.')
-    print('Your added it to your balance, and as of now... ')
+    print('You added it to your balance, and as of now... ')
 
     new_balance = balance + total_sell
 
@@ -203,9 +213,10 @@ def user_id_option() -> int:
         user_request = requests.get(f'{service_uri}users/{user_id}')
         json_user_request = user_request.json()
         check_user_name = json_user_request['username']
+    
 
         if username != check_user_name:
-            print(f'This user id "{user_id}" is not yours.')
+            print(f'This user id "{user_id}" is not yours or you input wrong username.')
             print('Try Again.')
         else:
             ok = True

@@ -93,3 +93,4 @@ class SellView(APIView):
         sell = Purchased.objects.get(id=sell_id)
         sell.share -= share
         sell.save()
+        return Response('Sold successfully')
