@@ -209,12 +209,11 @@ def user_id_option() -> int:
             print('Not a valid option. Come back again.')
             exit()
 
-        ok = user_id in user_id_choices
-        if ok:
-            return user_id
-        print('Not a valid user id')
-
-        
+        if user_id not in user_id_choices:
+            print(f'This user id "{user_id}" is not yours or you input wrong username.')
+            print('Try Again.')
+            exit()
+            
         user_id_request = requests.get(f'{service_uri}users/')
         json_user_id = user_id_request.json()
         print('USER ID  ' + 'USERNAME'.ljust(12))
@@ -226,7 +225,6 @@ def user_id_option() -> int:
         user_request = requests.get(f'{service_uri}users/{user_id}')
         json_user_request = user_request.json()
         check_user_name = json_user_request['username']
-
     
         if username != check_user_name:
             print(f'This user id "{user_id}" is not yours or you input wrong username.')
@@ -248,6 +246,7 @@ def welcome() -> bool:
 
     global user_id_choices
     user_id_choices = []
+
     for i in json_user_id:
         user_id_choices.append(i['id'])
         print(str(i['id']).ljust(10), end='')
@@ -263,10 +262,12 @@ def welcome() -> bool:
     print(f'Here is your current balance: {balance}')
 
 """
-# This starts the program flow
+
 username = os.environ.get('api_user') # hidden inside os environment
 password = os.environ.get('api_pass')
 """
+# This starts the program flow
+
 if not check_server():
     print("Server is not responding - quitting!")
     exit()
