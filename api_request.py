@@ -187,7 +187,9 @@ def read_user_choice() -> int:
     ok = False
 
     while not ok:
+
         answer = input("Enter your choice, 1 = BUY Stocks or 2 = SELL Stocks: ")
+       
         ok = answer in ['1', '2']
 
         if ok:
@@ -201,7 +203,18 @@ def user_id_option() -> int:
     ok = False
 
     while not ok:
-        user_id = int(input('Please type your user id: '))
+        try:
+            user_id = int(input('Please type your user id: '))
+        except ValueError:
+            print('Not a valid option. Come back again.')
+            exit()
+
+        ok = user_id in user_id_choices
+        if ok:
+            return user_id
+        print('Not a valid user id')
+
+        
         user_id_request = requests.get(f'{service_uri}users/')
         json_user_id = user_id_request.json()
         print('USER ID  ' + 'USERNAME'.ljust(12))
@@ -213,8 +226,8 @@ def user_id_option() -> int:
         user_request = requests.get(f'{service_uri}users/{user_id}')
         json_user_request = user_request.json()
         check_user_name = json_user_request['username']
-    
 
+    
         if username != check_user_name:
             print(f'This user id "{user_id}" is not yours or you input wrong username.')
             print('Try Again.')
@@ -233,7 +246,10 @@ def welcome() -> bool:
 
     print('USER ID  ' + 'USERNAME'.ljust(12))
 
+    global user_id_choices
+    user_id_choices = []
     for i in json_user_id:
+        user_id_choices.append(i['id'])
         print(str(i['id']).ljust(10), end='')
         print(str(i['username']).ljust(10))
 
@@ -247,10 +263,13 @@ def welcome() -> bool:
     print(f'Here is your current balance: {balance}')
 
 """
-# This start the program flow
+# This starts the program flow
 username = os.environ.get('api_user') # hidden inside os environment
 password = os.environ.get('api_pass')
 """
+if not check_server():
+    print("Server is not responding - quitting!")
+    exit()
 
 print('Make sure you are registered user.')
 username = input('Enter your username: ')
@@ -261,9 +280,6 @@ if username == '' or password == '':
     print('once you filled your username and password, run this program and it will show you your id')
     exit()
 
-if not check_server():
-    print("Server is not responding - quitting!")
-    exit()
 
 print(f'Connecting to {service_uri}...')
 
