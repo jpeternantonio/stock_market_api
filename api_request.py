@@ -45,10 +45,11 @@ def buy() -> bool: # Purchased a stock
     stock_id = []
 
     for i in json_stock:
-        stock_id.append(i['id'])
-        print(str(i['id']).ljust(10), end='')
-        print(i['name'].ljust(15), end='')
-        print(i['price'])
+        if float(i['price']) > 0:
+            stock_id.append(i['id'])
+            print(str(i['id']).ljust(10), end='')
+            print(i['name'].ljust(15), end='')
+            print(i['price'])
 
     choose_stock = stock_id_choice()
     request_price = requests.get(f'{service_uri}stocks/{choose_stock}/')
@@ -121,8 +122,8 @@ def sell() -> bool:
     sell_id = []
 
     for i in json_sell:
-        sell_id.append(i['id'])
-        if i['user_id'] == user_id:
+        if i['user_id'] == user_id and i['share'] > 0:
+            sell_id.append(i['id'])
             print(str(i['id']).ljust(10), end='')
             print(str(i['share']).ljust(10), end='')
             for x in json_stock:
