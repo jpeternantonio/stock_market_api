@@ -33,8 +33,8 @@ How to use this program.
 
 1. Install all needed program and packages on your computer
 2. Run it in localhost and do the usual migration in django
-    a. Run 'python manage.py loaddata stocks.json' after migration. This will populate the data for stock models.
-3. Register as superuser to add stocks. Name and price
+    A. Run 'python manage.py loaddata stocks.json' after migration. This will populate the data for stock models.
+3. Register as superuser to add stocks. Name and price. (no need to execute this, if you followed the step 2)
 4. Register again using web app and add your ideal balance to buy stocks.
 5. Once registered, log-in and buy the stock and how many share you choose. Your balance will be deducted
 after the purchased.
