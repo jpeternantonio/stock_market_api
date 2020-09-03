@@ -167,9 +167,9 @@ def sell() -> bool:
         'id': option
         }
 
-    post_purchased = requests.put(f'{service_uri}sell/', auth=(username, password), json=sell_data)
+    put_purchased = requests.put(f'{service_uri}sell/', auth=(username, password), json=sell_data)
 
-    if post_purchased.status_code == 401:
+    if put_purchased.status_code == 401:
         print('Invalid user. You input a wrong password.')
         print('Transaction will be cancelled. Try again.')
         exit()
@@ -275,12 +275,6 @@ if not check_server():
 print('Make sure you are registered user.')
 username = input('Enter your username: ')
 password = input('Enter your password: ')
-
-if username == '' or password == '':
-    print('please fill in your username, and password')
-    print('once you filled your username and password, run this program and it will show you your id')
-    exit()
-
 
 print(f'Connecting to {service_uri}...')
 
