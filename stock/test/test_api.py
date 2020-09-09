@@ -33,7 +33,7 @@ class StockTests(APITestCase):
         
 
     def test_get_stock_detail(self):
-        response = self.client.get('/api/stocks/3/', follow=True)
+        response = self.client.get('/api/stocks/1/', follow=True)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 

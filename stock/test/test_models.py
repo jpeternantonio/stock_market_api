@@ -56,7 +56,7 @@ class SellTestCase(TestCase):
 
     # Testing of selling transaction, assertion were seperated to validate the field value specifically
     def test_sell(self) -> bool:
-        sell = Purchased.objects.get(id=2)
+        sell = Purchased.objects.get(id=1)
         self.assertEqual(sell.price, Decimal('50'))
 
         update_stock = Stocks.objects.update(price=F('price') + 50) # Change of stock market price
