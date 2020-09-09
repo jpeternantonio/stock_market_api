@@ -19,6 +19,7 @@ packages:
     chromedriver
 
 environment = pipenv
+If you prefer Docker and sqlite3, you can switch to branch using_docker 
 
 All test were done in Django.
 Functional test may not work on Windows OS.
